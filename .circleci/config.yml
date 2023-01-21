@@ -1,11 +1,19 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@7.2.0
+  aws-cli: circleci/aws-cli@2.0.6
   snyk: snyk/snyk@0.1.0
   stackhawk: stackhawk/stackhawk@1.0.3
   node: circleci/node@4.2.0
   terraform: circleci/terraform@3.0.0
 jobs:
+  aws-cli-cred-setup:
+    executor: aws-cli/default
+    steps:
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_REGION
   run_tests:
     docker:
       - image: cimg/node:14.16.0
@@ -77,7 +85,7 @@ jobs:
             terraform -chdir=./terraform/ecs apply \
               -var docker_img_name=$AWS_ECR_ACCOUNT_URL/$AWS_ECR_REPO \
               -var docker_img_tag=0.1.<< pipeline.number >> \
-              -var key_pair=devrel-angel-rivera \
+              -var key_pair=devsecops \
               -auto-approve
             export ENDPOINT="$(terraform -chdir=./terraform/ecs output load_balancer_hostname)"
             mkdir -p /tmp/ecs/
@@ -120,6 +128,10 @@ jobs:
       - terraform/destroy:
           path: ./terraform/ecs
 workflows:
+  aws-cli:
+    jobs:
+      - aws-cli-cred-setup:
+          context: aws
   build:
     jobs:
       - run_tests
