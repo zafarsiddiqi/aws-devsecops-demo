@@ -44,7 +44,7 @@ jobs:
       - aws-ecr/ecr-login:
           public-registry: true
       - aws-ecr/build-image:
-          region: AWS_REGION
+          region: $AWS_REGION
           repo: $AWS_ECR_REPO
           tag: 0.1.<< pipeline.number >>
       - snyk/scan:
