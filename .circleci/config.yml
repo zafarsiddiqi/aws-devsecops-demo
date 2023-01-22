@@ -44,11 +44,9 @@ jobs:
       - aws-ecr/ecr-login:
           public-registry: true
       - aws-ecr/build-image:
-          public-registry: true
-          public-registry-alias: AWS_ECR_PUBLIC_REGISTRY_ALIAS
           region: AWS_REGION
           repo: $AWS_ECR_REPO
-          tag: 0.1.<< pipeline.number >>
+          tag: latest, 0.1.<< pipeline.number >>
       - snyk/scan:
           docker-image-name: $AWS_ECR_ACCOUNT_URL/$AWS_ECR_REPO:0.1.<< pipeline.number >>
           fail-on-issues: false
@@ -57,10 +55,8 @@ jobs:
           target-file: Dockerfile
           token-variable: SNYK_TOKEN
       - aws-ecr/push-image:
-          public-registry: true
-          public-registry-alias: AWS_ECR_PUBLIC_REGISTRY_ALIAS
           repo: $AWS_ECR_REPO
-          tag: 0.1.<< pipeline.number >>          
+          tag: latest, 0.1.<< pipeline.number >>          
   terraform_deploy_aws_ecs:
     machine:
       image: ubuntu-2004:202101-01
