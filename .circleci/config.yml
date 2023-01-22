@@ -129,7 +129,7 @@ workflows:
           requires:
             - scan_build_docker_image
           docker-network: host
-          app-id: be2817d1f-9b59-43ce-8eee-4af5740aa232
+          app-id: e2817d1f-9b59-43ce-8eee-4af5740aa232
           steps:
             - checkout
             - aws-ecr/ecr-login
