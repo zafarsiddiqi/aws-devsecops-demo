@@ -38,7 +38,7 @@ jobs:
   scan_build_docker_image:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: micro
+    resource_class: medium
     steps:
       - checkout  
       - docker/check
@@ -58,7 +58,7 @@ jobs:
   terraform_deploy_aws_ecs:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: micro
+    resource_class: medium
     steps:
       - checkout
       - run:
@@ -91,7 +91,7 @@ jobs:
   smoketest_deployment:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: micro
+    resource_class: medium
     steps:
       - checkout
       - attach_workspace:
@@ -104,7 +104,7 @@ jobs:
   terraform_destroy_aws_ecs:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: micro
+    resource_class: medium
     steps:
       - checkout
       - run:

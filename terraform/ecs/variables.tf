@@ -21,7 +21,7 @@ variable "ami" {
 
 variable "instance_type" {
   description = "AWS Instance Type"
-  default     = "t3.micro"
+  default     = "t3.medium"
 }
 
 variable "iam_profile" {
