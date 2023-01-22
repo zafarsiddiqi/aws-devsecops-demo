@@ -46,7 +46,7 @@ jobs:
       - aws-ecr/build-image:
           region: AWS_REGION
           repo: $AWS_ECR_REPO
-          tag: latest, 0.1.<< pipeline.number >>
+          tag: 0.1.<< pipeline.number >>
       - snyk/scan:
           docker-image-name: $AWS_ECR_ACCOUNT_URL/$AWS_ECR_REPO:0.1.<< pipeline.number >>
           fail-on-issues: false
@@ -56,7 +56,7 @@ jobs:
           token-variable: SNYK_TOKEN
       - aws-ecr/push-image:
           repo: $AWS_ECR_REPO
-          tag: latest, 0.1.<< pipeline.number >>          
+          tag: 0.1.<< pipeline.number >>          
   terraform_deploy_aws_ecs:
     machine:
       image: ubuntu-2004:202101-01
