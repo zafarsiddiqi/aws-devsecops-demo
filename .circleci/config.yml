@@ -42,6 +42,7 @@ jobs:
     steps:
       - checkout
       - aws-ecr/ecr-login:
+          public-registry: false
       - aws-ecr/build-image:
           region: $AWS_REGION
           repo: $AWS_ECR_REPO
