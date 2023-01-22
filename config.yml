@@ -38,7 +38,7 @@ jobs:
   scan_build_docker_image:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: medium
+    resource_class: micro
     steps:
       - checkout  
       - docker/check
@@ -58,7 +58,7 @@ jobs:
   terraform_deploy_aws_ecs:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: medium
+    resource_class: micro
     steps:
       - checkout
       - run:
@@ -78,7 +78,7 @@ jobs:
             terraform -chdir=./terraform/ecs apply \
               -var docker_img_name=${DOCKER_LOGIN}/${CIRCLE_PROJECT_REPONAME} \
               -var docker_img_tag=0.1.<< pipeline.number >> \
-              -var key_pair=devrel-angel-rivera \
+              -var key_pair=devsecops \
               -auto-approve
             export ENDPOINT="$(terraform -chdir=./terraform/ecs output load_balancer_hostname)"
             mkdir -p /tmp/ecs/
@@ -91,7 +91,7 @@ jobs:
   smoketest_deployment:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: medium
+    resource_class: micro
     steps:
       - checkout
       - attach_workspace:
@@ -104,7 +104,7 @@ jobs:
   terraform_destroy_aws_ecs:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: medium
+    resource_class: micro
     steps:
       - checkout
       - run:

@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/punkdata/nodejs-circleci.git"
   },
-  "author": "Angel Rivera",
+  "author": "Zafar Siddiqi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/punkdata/nodejs-circleci/issues"

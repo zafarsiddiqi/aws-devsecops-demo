@@ -16,12 +16,12 @@ variable "key_pair" {
 
 variable "ami" {
   description = "Amazon Linux 2 AMI x86"
-  default     = "ami-01cc34ab2709337aa"
+  default     = "ami-0b5eea76982371e91"
 }
 
 variable "instance_type" {
   description = "AWS Instance Type"
-  default     = "t3.medium"
+  default     = "t3.micro"
 }
 
 variable "iam_profile" {
@@ -31,23 +31,23 @@ variable "iam_profile" {
 
 variable "asg_min" {
   description = "Min Instances"
-  default     = 3
+  default     = 1
 }
 
 variable "asg_max" {
   description = "Max Instances"
-  default     = 5
+  default     = 1
 }
 
 variable "asg_desired" {
   description = "AWS Desired capacity for ASG"
-  default     = 3
+  default     = 1
 }
 
 variable "docker_img_name" {
   type        = string
   description = "Name of the docker image being deployed"
-  default     = "ariv3ra/aws-demo-coderi2021"
+  default     = "t6a3k8e1/aws-devsecops-demo"
 }
 
 variable "docker_img_tag" {
@@ -58,6 +58,6 @@ variable "docker_img_tag" {
 
 variable "ecs_desired_count" {
   description = "Number of desired ECS Tasks to deploy"
-  default     = 3
+  default     = 1
 }
 

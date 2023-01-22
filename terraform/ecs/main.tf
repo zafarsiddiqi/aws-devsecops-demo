@@ -1,5 +1,21 @@
 terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+  }
+
   required_version = ">= 0.13.5"
+  
+  # backend "remote" {
+  # organization = "demorb-org-5fca69"
+
+  #   workspaces {
+  #     name = "aws-devsecops-demo"
+  #   }
+  # }
+
   backend "s3" {
     bucket = "aws-devsecops-demo-rb"
     key    = "terraform/state"
@@ -189,8 +205,8 @@ resource "aws_autoscaling_notification" "asg_notifications" {
 resource "aws_cloudwatch_log_group" "awslogs-aws-devsecops-demo" {
   name = "awslogs-aws-devsecops-demo"
   tags = {
-    team  = "devrel marketing"
-    owner = "Angel Rivera"
+    team  = "Siddiqi development"
+    owner = "Zafar Siddiqi"
   }
 }
 
@@ -222,8 +238,8 @@ resource "aws_alb" "main" {
     aws_security_group.aws-devsecops-demo-ELB-HTTP80.id,
   ]
   tags = {
-    team  = "DevRel Marketing",
-    owner = "Angel Rivera"
+    team  = "Siddiqi Marketing",
+    owner = "Zafar Siddiqi"
   }
 }
 

@@ -19,7 +19,7 @@
       "options": {
         "awslogs-group": "awslogs-aws-devsecops-demo",
         "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "devrel-aws-devsecops-demo"
+        "awslogs-stream-prefix": "zsiddiqi-aws-devsecops-demo"
       }
     }
   }
